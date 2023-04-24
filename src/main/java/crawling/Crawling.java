@@ -23,13 +23,19 @@ public class Crawling {
 			int num = title_elem.text().indexOf("닫기");
 			String title = title_elem.text().substring(num+3);
 			// title에 네이밍이 되어있지 않아, title 앞에서 substring으로 끊어줌
-			//System.out.println(title);
+			System.out.println(title);
 			
 			Elements info_elem = doc.select(".artReadJobSum > .tbRow > .tbCol");
 			Elements career = info_elem.get(0).select(".tbList dd .col_1");
 			Element pay = info_elem.get(1).select(".tbList dd").get(1);
 			// 공고의 헤더에서 신입과 경력 구분, 급여 조건에 대해서 추출
+			System.out.println(career.text());
 			System.out.println(pay.text());
+			
+			Elements workPlace = doc.select(".address #mapDtl");
+			String[] addr =workPlace.text().split(" "); 
+			// 근무지 주소
+			System.out.println(addr[0] + " " + addr[1]);
 			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
